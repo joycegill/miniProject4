@@ -25,7 +25,7 @@ public class AssociativeArrayTests {
    * a simple test for seeing if the hasKey function works correctly 
    */
   @Test
-  public void samBighamTest1(){
+  public void samBighamTest1() throws KeyNotFoundException{
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
     arr.set("Z", "Zebra");
     assertEquals(arr.hasKey("Z"), true);
@@ -37,7 +37,7 @@ public class AssociativeArrayTests {
    * multiple times
    */
     @Test
-  public void samBighamTest2(){
+  public void samBighamTest2() throws KeyNotFoundException{
   AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
   for(int i = 0; i< 10; i++ ){
   arr.set("Z", "Zebra");
@@ -49,7 +49,7 @@ public class AssociativeArrayTests {
    * arr.get("b") is unable to get a key
    */
     @Test
-  public void samBighamEdge1(){
+  public void samBighamEdge1() throws KeyNotFoundException{
   AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
 
   arr.set("a", "apple");
@@ -72,8 +72,9 @@ public class AssociativeArrayTests {
    * Micah says Let's test out Hoare's billion dollar mistake. Sam, I hope these tests are right.
    * 
    * Sam says null shouldn't be a value.
+   * @throws KeyNotFoundException
    */
-  public void micahCantorTest1() {
+  public void micahCantorTest1() throws KeyNotFoundException {
     // values may be null
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
     arr.set("NULL", null);
@@ -89,8 +90,9 @@ public class AssociativeArrayTests {
   /**
    * SamR removed this test because null need not be a valid key.
    * (It wasn't specified.)
+   * @throws KeyNotFoundException
    */
-  public void micahCantorTest2() {
+  public void micahCantorTest2() throws KeyNotFoundException {
     // keys and values may be null
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
     arr.set(null, null);
@@ -108,8 +110,9 @@ public class AssociativeArrayTests {
    *
    * SamR removed this test because the behavior on null inputs
    * is unspecified.
+   * @throws KeyNotFoundException
    */
-  public void micahCantorEdge1() {
+  public void micahCantorEdge1() throws KeyNotFoundException {
     // Uh oh.
     AssociativeArray<Object, Object> arr = new AssociativeArray<Object, Object>();
     Object value = new Object();
@@ -169,7 +172,7 @@ public class AssociativeArrayTests {
   // | Tests by Kevin Fitzgerald |
   // +---------------------------+
   @Test
-  public void kevinFitzgeraldTest1(){
+  public void kevinFitzgeraldTest1() throws KeyNotFoundException{
     //Build Array
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     //Set some values
@@ -204,7 +207,7 @@ public class AssociativeArrayTests {
   }//kevinFitzgeraldTest1
   
   @Test
-  public void kevinFitzgeraldTest2(){
+  public void kevinFitzgeraldTest2() throws KeyNotFoundException{
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     //Set the value
     testarr.set("1", "one");
@@ -227,7 +230,7 @@ try{
   }//kevinFitzgeraldTest2()
   
   @Test
-  public void kevinFitzgeraldEdge1(){
+  public void kevinFitzgeraldEdge1() throws KeyNotFoundException{
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     testarr.set("1", "one");
     testarr.remove("1");
@@ -246,7 +249,7 @@ try{
   // +---------------------+
 
   @Test
-  public void joyceGillTest1(){
+  public void joyceGillTest1() throws KeyNotFoundException{
     // Create an AssociativeArray
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
 
@@ -309,8 +312,9 @@ try{
    *
    * SamR removed this test because it makes assumptions about the
    * order of values in the array.
+   * @throws KeyNotFoundException
    */
-  public void chloeKellyTest1() {
+  public void chloeKellyTest1() throws KeyNotFoundException {
     // Build Array
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     // Set some values
@@ -387,9 +391,10 @@ try{
 
   /**
    * A series of tests of the size() method
+   * @throws KeyNotFoundException
    */
   @Test
-  public void jaysonKunkelTest1(){
+  public void jaysonKunkelTest1() throws KeyNotFoundException{
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
 
     // empty array should have size 0
@@ -560,7 +565,7 @@ try{
 
   /* this tests the remove method */
   @Test
-  public void johnMillerTest02() {
+  public void johnMillerTest02() throws KeyNotFoundException {
     // Build an array
     AssociativeArray<String, String> array = new AssociativeArray<String, String>();
     array.set("p", "platypus");// set a key/value pair in the AssociativeArray
@@ -593,7 +598,7 @@ try{
    * to fail
    */
   @Test
-  public void johnMillerEdge01() {
+  public void johnMillerEdge01() throws KeyNotFoundException {
     AssociativeArray<String, String> array = new AssociativeArray<String, String>();
     array.remove("z");
   }//edge case
@@ -675,9 +680,10 @@ try{
 
   /**
    * Do we get exceptions when grabbing a deleted value from the array?
+   * @throws KeyNotFoundException
    */
   @Test
-  public void samuelRebelskyTest03() {
+  public void samuelRebelskyTest03() throws KeyNotFoundException {
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
     // Add an element to the array
     arr.set("A", "Apple");
@@ -746,7 +752,7 @@ try{
 
  //tests to see that associativeArray functions work as intended
  @Test
- public void mariaRodriguezTest02(){
+ public void mariaRodriguezTest02() throws KeyNotFoundException{
    AssociativeArray<String, String> test2 = new AssociativeArray<String, String>();
    test2.set("a", "apple");   
    test2.set("b", "balloon");
@@ -798,7 +804,7 @@ try{
   } // gabrielaRoznawskaTest01
 
   @Test
-  public void gabrielaRoznawskaTest02() {
+  public void gabrielaRoznawskaTest02() throws KeyNotFoundException {
     // declare and initialize the keys in the array
     AssociativeArray<String, String> ar1 = new AssociativeArray<String, String>();
     ar1.set("Apple", "Apple-Cinnamon milk rice");
@@ -858,7 +864,7 @@ try{
   // | Tests by Shuta Shibue |
   // +-----------------------+
   @Test
-  public void shutaShibueTest1() {
+  public void shutaShibueTest1() throws KeyNotFoundException {
       // Build Array
       AssociativeArray<String, Integer> test1 = new AssociativeArray<String, Integer>();
       // Setting some values
@@ -879,7 +885,7 @@ try{
   }// shutaShibueTest1()
 
   @Test
-  public void shutaShibueTest2() {
+  public void shutaShibueTest2() throws KeyNotFoundException {
       // Build Array
       AssociativeArray<String, String> test1 = new AssociativeArray<String, String>();
       // Setting some values
@@ -978,9 +984,10 @@ try{
 
   /**
    * Test removing a key and ensue it throws KeyNotFoundException on retrieval
+   * @throws KeyNotFoundException
    */
   @Test
-  public void reneUriasTest03() {
+  public void reneUriasTest03() throws KeyNotFoundException {
     AssociativeArray<String, Double> arr = new AssociativeArray<String, Double>();
     arr.set("Pi", 3.14);
 
@@ -1058,9 +1065,10 @@ try{
 
   /**
    * Test removing entires from the associative array
+   * @throws KeyNotFoundException
    */
   @Test
-  public void reneUriasTestRemove() {
+  public void reneUriasTestRemove() throws KeyNotFoundException {
     AssociativeArray<Integer, String> array = new AssociativeArray<>();
     array.set(1, "one");
     array.set(2, "two");
@@ -1074,9 +1082,10 @@ try{
 
   /**
    * Test checking the size of the associative array
+   * @throws KeyNotFoundException
    */
   @Test
-  public void reneUriasTestSize() {
+  public void reneUriasTestSize() throws KeyNotFoundException {
     AssociativeArray<String, Boolean> array = new AssociativeArray<>();
 
     assertEquals(0, array.size()); // Initial size should be 0
@@ -1141,9 +1150,10 @@ try{
 
   /**
   * Ensures that when an element is removed from the middle of the list the next added element takes its place
+   * @throws KeyNotFoundException
   */
   @Test
-  public void LukeWaltersTest2(){
+  public void LukeWaltersTest2() throws KeyNotFoundException{
     AssociativeArray<Integer, Integer> testArray = new AssociativeArray<>();
     testArray.set(1, 11);
     testArray.set(2, 22);
@@ -1211,9 +1221,10 @@ try{
    * Instantiates an array and runs tests with 
    * the additional remove method, checking if 
    * it performs properly
+   * @throws KeyNotFoundException
   */
   @Test
-  public void JonathanWangTest2() {
+  public void JonathanWangTest2() throws KeyNotFoundException {
     AssociativeArray<String, String> testArray = new AssociativeArray<>();
 
     // Add key-value pairs
@@ -1267,7 +1278,7 @@ try{
    * Test if hasKey changes status after removing a key
    */
   @Test
-  public void lydiaYeTest01() {
+  public void lydiaYeTest01() throws KeyNotFoundException {
     // Create an associative array
     AssociativeArray<String, Integer> arr = new AssociativeArray<String, Integer> ();
 
@@ -1321,7 +1332,7 @@ try{
       assertEquals(arr.get("A"), copyOfCopiedArr.get("A"));
       assertEquals(arr.get("B"), copyOfCopiedArr.get("B"));
       assertEquals(arr.get("C"), copyOfCopiedArr.get("C"));
-      assertEquals(arr.toString(), copyOfCopiedArr.toString);
+      assertEquals(arr.toString(), copyOfCopiedArr.toString());
     } catch (Exception e) {
       fail("The copy of cloned array does not remian same as the original array");
     } // try/catch

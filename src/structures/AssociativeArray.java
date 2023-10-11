@@ -1,7 +1,6 @@
 package structures;
 
 import static java.lang.reflect.Array.newInstance;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * A basic implementation of Associative Arrays with keys of type K and values of type V.
@@ -80,9 +79,9 @@ public class AssociativeArray<K, V> {
 
   /**
    * Set the value associated with key to value. Future calls to get(key) will return value.
+ * @throws KeyNotFoundException
    */
   public void set(K key, V value) {
-    try{
       // Update value if key is found
       for (int i = 0; i < size; i++) {
         if (pairs[i].key.equals(key)) {
@@ -96,10 +95,6 @@ public class AssociativeArray<K, V> {
       }
       KVPair<K, V> newPair = new KVPair<K, V>(key, value);
       pairs[size++] = newPair;
-    } catch (Exception e) {
-      fail("Error: key does not exist");
-    } // try/catch
-  
   }
   // set(K,V)
 
@@ -127,10 +122,10 @@ public class AssociativeArray<K, V> {
   /**
    * Remove the key/value pair associated with a key. Future calls to get(key) will throw an
    * exception. If the key does not appear in the associative array, does nothing.
+ * @throws KeyNotFoundException
    */
-  public void remove(K key) {
+  public void remove(K key) throws KeyNotFoundException {
     int j = 0;
-    try{
       for (int i = 0; i < size; i++) {
         if (pairs[i].key == key) {
           for (j = i; j + 1 < size; j++) {
@@ -138,11 +133,10 @@ public class AssociativeArray<K, V> {
           }
           pairs[j + 1] = null;
           size--;
+          return;
         }
       } // remove(K)
-    } catch (Exception e) {
-      fail("Error: key does not exist");
-    } // try/catch
+      throw new KeyNotFoundException();
   }
 
   /**
