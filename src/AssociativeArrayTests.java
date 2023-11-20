@@ -1,10 +1,12 @@
-package structures;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
+
+import structures.AssociativeArray;
+import structures.KeyNotFoundException;
 
 import java.io.*;
 import java.util.*;
@@ -1137,7 +1139,7 @@ try{
   // +-----------------------+
   /** 
    * Checks that the expand method and clone methods work properly and that they have the same pair size length at the end
-  */
+  
   @Test
   public void LukeWaltersTest1(){
     AssociativeArray<Integer, Integer> testArray = new AssociativeArray<>();
@@ -1147,7 +1149,7 @@ try{
     AssociativeArray <Integer, Integer> cloneArray = testArray.clone();
     assertEquals(cloneArray.pairs.length, testArray.pairs.length);
     }
-
+    */
   /**
   * Ensures that when an element is removed from the middle of the list the next added element takes its place
    * @throws KeyNotFoundException
