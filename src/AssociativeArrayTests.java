@@ -294,7 +294,7 @@ try{
 
     // Check that it's empty
     assertEquals(0, arr.size());
-    assertEquals("{}", arr.toString());
+    assertEquals("{ }", arr.toString());
   }// joyceGillEdge1()
 
   // +--------------------+------------------------------------------
@@ -376,7 +376,7 @@ try{
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     // Make sure it is empty
     assertEquals(0, testarr.size());
-    assertEquals("{}", testarr.toString());
+    assertEquals("{ }", testarr.toString());
   }// chloeKellyEdge1()
 
   // +--------------------+------------------------------------------
@@ -407,7 +407,7 @@ try{
     assertEquals(1, arr.size());
 
     // the default size is 16, so a full array should have size 16
-    for(int i = 0; i < 15; i++){
+    for(int i = 0; i < 16; i++){
       arr.set("" + i, "value");
     } // for
     assertEquals(16, arr.size());
@@ -470,7 +470,7 @@ try{
     arr.set("A", "Apple");
     assertEquals(1, arr.size());
     arr.expand();
-    assertEquals(2, arr.size());
+    assertEquals(1, arr.size());
 
   } // jaysonKunkelEdge1
 
@@ -1162,7 +1162,7 @@ try{
     testArray.set(3, 33);
     testArray.remove(2);
     testArray.set(4, 44);
-    String checker = "{ 1: 11, 4: 44, 3: 33 }";
+    String checker = "{ 1: 11, 3: 33, 4: 44 }";
     assertEquals(testArray.toString(), checker);
   }
 
@@ -1194,7 +1194,7 @@ try{
 
     // Check array before setting
     assertEquals(0, testArray.size());
-    assertEquals("{}", testArray.toString());
+    assertEquals("{ }", testArray.toString());
 
     // Add some key-value pairs
     testArray.set("Autry", "Osera");
@@ -1276,89 +1276,72 @@ try{
   // | Tests by Lydia Ye |
   // +-------------------+
 
-  /*
-   * Test if hasKey changes status after removing a key
-   */
   @Test
-  public void lydiaYeTest01() throws KeyNotFoundException {
-    // Create an associative array
-    AssociativeArray<String, Integer> arr = new AssociativeArray<String, Integer> ();
+  public void NoahTest1() {
+    AssociativeArray<String, Integer> aa = new AssociativeArray<>();
+    aa.set("item1", 5);
+    aa.set("item2", 3);
+    assertEquals(2, aa.size());
+  }
 
-    // Create new KV pairs
-    arr.set("A", 1);
-    arr.set("B", 2);
-    arr.set("C", 3);
-
-    // Checks if hasKey works correclty with existed keys
-    try {
-      assertEquals(true, arr.hasKey("A"));
-      assertEquals(true, arr.hasKey("B"));
-      assertEquals(true, arr.hasKey("C"));
-    } catch (Exception e) {
-      fail("The array does not contain expected keys");
-    } // try/catch
-
-    // Remove keys from the array
-    arr.remove("A");
-    arr.remove("B");
-
-    // Checks if hasKey works properly when keys are removed
-    try {
-      assertEquals(false, arr.hasKey("A"));
-      assertEquals(false, arr.hasKey("B"));
-      assertEquals(true, arr.hasKey("C"));
-    } catch (Exception e) {
-      fail("Exception in hasKey after remove a key");
-    } // try/catch
-  } //lydiaYeTest01
-
-  /*
-   * Test if cloning a cloned array works as expected
-   */
   @Test
-  public void lydiaYeTest02() {
-    // Create an associative array with KV pairs
-    AssociativeArray<String, Integer> arr = new AssociativeArray<String, Integer> (); 
-    arr.set("A", 1);
-    arr.set("B", 2);
-    arr.set("C", 3);
+  public void NoahTest2() {
+    AssociativeArray<String, Integer> aa = new AssociativeArray<>();
+    aa.set("item1", 5);
+    aa.set("item2", 3);
+    aa.remove("item1");
+    assertEquals(1, aa.size());
+  }
 
-    // Make a copy
-    AssociativeArray<String, Integer> copyOfArr = arr.clone();
-    // Make a copy of copied arr
-    AssociativeArray<String, Integer> copyOfCopiedArr = copyOfArr.clone();
-
-    // Checks copy of copied arr is same as arr
-    try {
-      assertEquals(arr.size(), copyOfCopiedArr.size());
-      assertEquals(arr.get("A"), copyOfCopiedArr.get("A"));
-      assertEquals(arr.get("B"), copyOfCopiedArr.get("B"));
-      assertEquals(arr.get("C"), copyOfCopiedArr.get("C"));
-      assertEquals(arr.toString(), copyOfCopiedArr.toString());
-    } catch (Exception e) {
-      fail("The copy of cloned array does not remian same as the original array");
-    } // try/catch
-  } //lydiaYeTest02
-
-  /*
-   * Tests what happen when we remove from an empty array
-   */
   @Test
-  public void lydiaYeEdge01() {
-    // Create an empty associative array
+  public void NoahEdge1() {
+    AssociativeArray<String, Integer> aa = new AssociativeArray<>();
+    aa.remove("item3"); // remove non-existent key
+    assertEquals(0, aa.size()); // size remains 0
+  }
+
+ // +-------------------+-------------------------------------------
+  // | Tests by Livia Stein Freitas |
+  // +-------------------+
+
+  // Checks that if set is called on a non-empty slot, the last value set gets correctly assigned
+  @Test
+  public void LiviaSteinTest1(){
     AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
-    
-    // Check if remove() works as expected
-    try {
-      // try to remove from the empty array
-      arr.remove("Not in the array");
-      // fail if it does not throw an error
-      fail("Did not throw an exception");
-    } catch(Exception e) {
-      fail("Exception in removing from an empty array");
-    } // try/catch
-  } // lydiaYeTest01() 
+    arr.set("A","a");
+    arr.set("A","b");
+    try{
+    assertEquals("b", arr.get("A"));
+    } catch (KeyNotFoundException e){
+      fail("Key not found.");
+    }
+  }
+  
+  // Ensures that size() gets the right value after a call to remove
+  @Test
+  public void LiviaSteinTest2(){
+    AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
+    arr.set("A","a");
+    arr.set("B","b");
+    arr.set("C","c");
+    arr.remove("B");
+    try{
+      assertEquals(2, arr.size());
+    } catch (Exception e){
+      fail("Could not compute the size of the array.");
+    }
 
+  }
 
-
+  // Checks if removing a value from an empty array is handled gracefully
+  @Test
+  public void LiviaSteinEdge1(){
+    AssociativeArray<String, String> arr = new AssociativeArray<String, String>();
+    try{
+    arr.remove("A");
+    }
+    catch (Exception e){
+      fail("Remove doesn't handle an empty array.");
+    }
+  }
 } // class AssociativeArrayTests
