@@ -294,7 +294,7 @@ try{
 
     // Check that it's empty
     assertEquals(0, arr.size());
-    assertEquals("{ }", arr.toString());
+    assertEquals("{}", arr.toString());
   }// joyceGillEdge1()
 
   // +--------------------+------------------------------------------
@@ -376,7 +376,7 @@ try{
     AssociativeArray<String, String> testarr = new AssociativeArray<String, String>();
     // Make sure it is empty
     assertEquals(0, testarr.size());
-    assertEquals("{ }", testarr.toString());
+    assertEquals("{}", testarr.toString());
   }// chloeKellyEdge1()
 
   // +--------------------+------------------------------------------
@@ -1194,7 +1194,7 @@ try{
 
     // Check array before setting
     assertEquals(0, testArray.size());
-    assertEquals("{ }", testArray.toString());
+    assertEquals("{}", testArray.toString());
 
     // Add some key-value pairs
     testArray.set("Autry", "Osera");
