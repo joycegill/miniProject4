@@ -67,9 +67,11 @@ public class AssociativeArray<K, V> {
    */
   public String toString() {
     String str = "";
+    // Check if the associative array is empty
     if (this.size == 0) {
       return "{}";
     }
+    // Iterate through the key/value pairs & build a string
     for (int i = 0; i < this.size; i++) {
       str += pairs[i].key + ": " + pairs[i].value;
       if (i < this.size - 1) {
@@ -104,6 +106,8 @@ public class AssociativeArray<K, V> {
         this.size++;
         return;
       } // if
+
+      // Add a new key/value pair if the key doesn't exist
       this.pairs[this.size] = new KVPair<K, V>(key, value);
       this.size++;
     } // try/catch
@@ -181,6 +185,7 @@ public class AssociativeArray<K, V> {
    */
   public int find(K key) throws KeyNotFoundException {
     for (int i = 0; i < this.size; i++) {
+      // Check if the current entry contains the given key
       if (this.pairs[i].key != null ) {
         if (this.pairs[i].key.equals(key)) {
           return i;
